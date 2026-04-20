@@ -1,0 +1,15 @@
+name: "debug-github-action"
+
+on: workflow_dispatch
+
+jobs:
+  debug:
+    name: "debug-github-action"
+    runs-on: ubuntu-latest
+    env:
+      WIZ_CLIENT_ID: ${{ secrets.WIZ_CLIENT_ID }}
+      WIZ_CLIENT_SECRET: ${{ secrets.WIZ_CLIENT_SECRET }}
+      POLICY: "Default IaC policy"
+    steps:
+      - name: Output Information
+        run: pws && env && is && ls -al
