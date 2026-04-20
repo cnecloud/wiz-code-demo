@@ -10,6 +10,9 @@ jobs:
       WIZ_CLIENT_ID: ${{ secrets.WIZ_CLIENT_ID }}
       WIZ_CLIENT_SECRET: ${{ secrets.WIZ_CLIENT_SECRET }}
       POLICY: "Default IaC policy"
+      NAME: ${{ format('{0}-{1}', github.repository, github.ref_name) }}
     steps:
       - name: Output Information
         run: pwd  && env && id && ls -al
+      - name: VARIBALE
+        run: echo "${{ github.GITHUB_REPOSITORY }}/${{ github.GITHUB_REF_NAME }}" & echo $NAME
