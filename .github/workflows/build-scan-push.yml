@@ -1,14 +1,18 @@
 name: Build/Scan/Push Containers
 
-on:
-  workflow_dispatch:
-  push:
-    branches:
-      - main
-    paths:
-      - sast-demo/**
-  schedule:
-    - cron: "0 3 */7 * *"
+# on:
+#   workflow_dispatch:
+#   push:
+#     branches:
+#       - main
+#     paths:
+#       - sast-demo/**
+#   schedule:
+#     - cron: "0 3 */7 * *"
+
+
+on: workflow_dispatch
+
 
 jobs:
   docker_build:

@@ -1,0 +1,36 @@
+name: "wiz-dir-scan"
+
+on: workflow_dispatch
+
+jobs:
+  wiz-dir-scan:
+    name: "Wiz Dir Scan"
+    runs-on: ubuntu-latest
+    env:
+      WIZ_CLIENT_ID: ${{ secrets.WIZ_CLIENT_ID }}
+      WIZ_CLIENT_SECRET: ${{ secrets.WIZ_CLIENT_SECRET }}
+      SCAN_PATH: "./"
+      POLICY: "Default IaC policy"
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+
+      - name: Download Wiz CLI v1.x
+        run: curl -o wizcli https://downloads.wiz.io/v1/wizcli/latest/wizcli-linux-amd64 && chmod +x wizcli
+
+      - name: Run Wiz CLI Dir scan
+        run: ./wizcli scan dir $SCAN_PATH --policies "$POLICY"
+
+      - name: Run Wiz CLI Directory Scan
+        run: |-
+          ./wizcli scan dir $SCAN_PATH \
+          --tag github_action_run_id=${{ github.run_id }} \
+          --sarif-output-file wiz-output.json \
+          --sbom-format spdx-json \
+          --sbom-output-file sbom.json
+
+      - name: Upload SARIF file
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: wiz-output.json
+          category: wiz-dir

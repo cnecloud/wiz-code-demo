@@ -1,9 +1,11 @@
 name: Wiz CLI Directory Scan
 
-#on:
+on: workflow_dispatch
+
+# on:
 #  workflow_dispatch:
 #  push:
-"    branches:
+#     branches:
 #      - main
 #  pull_request:
 #    branches:

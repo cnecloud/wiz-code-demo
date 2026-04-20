@@ -1,7 +1,10 @@
 name: "tj-changed-files-analysis"
 
-on:
-  pull_request:
+# on:
+#   pull_request:
+
+on: workflow_dispatch
+
 
 permissions:
   pull-requests: read
@@ -10,7 +13,7 @@ jobs:
   check_diff:
     runs-on: ubuntu-latest
     name: Whats changed
-      
+
     steps:
       - name: Checkout code
       - uses: actions/checkout@v4
