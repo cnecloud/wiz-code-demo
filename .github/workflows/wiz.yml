@@ -18,19 +18,12 @@ jobs:
       - name: Download Wiz CLI v1.x
         run: curl -o wizcli https://downloads.wiz.io/v1/wizcli/latest/wizcli-linux-amd64 && chmod +x wizcli
 
-      - name: Run Wiz CLI Dir scan
-        run: ./wizcli scan dir $SCAN_PATH --policies "$POLICY"
-
-      - name: Run Wiz CLI Directory Scan
+      - name: Run Wiz CLI dir scan using default policies
         run: |-
           ./wizcli scan dir $SCAN_PATH \
-          --tag github_action_run_id=${{ github.run_id }} \
-          --sarif-output-file wiz-output.json \
-          --sbom-format spdx-json \
-          --sbom-output-file sbom.json
-
-      - name: Upload SARIF file
-        uses: github/codeql-action/upload-sarif@v3
-        with:
-          sarif_file: wiz-output.json
-          category: wiz-dir
+          --name "$GITHUB_REPOSITORY/$GITHUB_REF_NAME" \
+          --tags github_action_run_id=${{ github.run_id }} \
+          --tags app_id=wiz-code-demo \
+          --tags env=dev \
+          --tags owner=cnecloud \
+          --applications wiz-code-demo
