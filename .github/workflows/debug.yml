@@ -12,4 +12,4 @@ jobs:
       POLICY: "Default IaC policy"
     steps:
       - name: Output Information
-        run: pws && env && is && ls -al
+        run: pwd  && env && id && ls -al
