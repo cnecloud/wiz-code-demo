@@ -1,15 +1,15 @@
 name: Wiz CLI Directory Scan
 
-on:
-  workflow_dispatch:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
-  schedule:
-    - cron: "0 3 */7 * *"
+#on:
+#  workflow_dispatch:
+#  push:
+"    branches:
+#      - main
+#  pull_request:
+#    branches:
+#      - main
+#  schedule:
+#    - cron: "0 3 */7 * *"
 
 permissions:
   contents: read
