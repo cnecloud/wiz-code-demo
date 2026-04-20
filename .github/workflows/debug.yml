@@ -15,6 +15,6 @@ jobs:
       - name: Output Information
         run: pwd  && env && id && ls -al
       - name: CONCAT
-        run: echo "${ GITHUB_REPOSITORY }/${ GITHUB_REF_NAME }"
+        run: echo "$GITHUB_REPOSITORY/$GITHUB_REF_NAME"
       - name: NAME
         run: echo $NAME
